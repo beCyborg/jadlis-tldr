@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "LOCK=\"${CLAUDE_PLUGIN_DATA}/.install.lock\"; REQ=\"${CLAUDE_PLUGIN_ROOT}/requirements.txt\"; CACHED=\"${CLAUDE_PLUGIN_DATA}/requirements.txt\"; if [ -f \"$LOCK\" ]; then exit 0; fi; diff -q \"$REQ\" \"$CACHED\" >/dev/null 2>&1 && exit 0; touch \"$LOCK\" && python3 -m venv \"${CLAUDE_PLUGIN_DATA}/venv\" && \"${CLAUDE_PLUGIN_DATA}/venv/bin/pip\" install -q -r \"$REQ\" && cp \"$REQ\" \"$CACHED\" && rm -f \"$LOCK\" || rm -f \"$LOCK\""
+          }
+        ]
+      }
+    ]
+  }
+}

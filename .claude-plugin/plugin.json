@@ -1,0 +1,10 @@
+{
+  "name": "yt-tldr",
+  "description": "Скачивает субтитры YouTube-видео и делает аналитическую выжимку с практическими выводами",
+  "author": {
+    "name": "beCyborg"
+  },
+  "repository": "https://github.com/beCyborg/youtube-tldr-plugin",
+  "license": "MIT",
+  "keywords": ["youtube", "subtitles", "tldr", "summarize", "transcript", "video-analysis"]
+}
