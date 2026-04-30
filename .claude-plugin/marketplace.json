@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "yt-tldr",
+      "name": "tldr",
       "version": "1.0.0",
       "description": "Скачивает субтитры YouTube-видео и делает аналитическую выжимку с практическими выводами",
       "author": { "name": "beCyborg" },
