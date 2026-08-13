@@ -1,10 +1,22 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "tldr",
-  "description": "Скачивает субтитры YouTube-видео и делает аналитическую выжимку с практическими выводами",
+  "displayName": "tldr — выжимка из YouTube-видео и текстовых файлов",
+  "description": "Извлекает субтитры YouTube-видео или читает текстовый файл и формирует практическую выжимку: суть, ключевые идеи, что делать, ограничения. Результат сохраняется отдельной markdown-заметкой.",
   "author": {
     "name": "beCyborg"
   },
+  "homepage": "https://github.com/beCyborg/youtube-tldr-plugin",
   "repository": "https://github.com/beCyborg/youtube-tldr-plugin",
   "license": "MIT",
-  "keywords": ["youtube", "subtitles", "tldr", "summarize", "transcript", "video-analysis"]
+  "keywords": ["youtube", "subtitles", "tldr", "summarize", "transcript", "video-analysis"],
+  "userConfig": {
+    "TLDR_SAVE_DIR": {
+      "type": "directory",
+      "title": "Папка для выжимок",
+      "description": "Куда складывать готовые выжимки — обычная папка с markdown-файлами; можно указать путь внутри Obsidian-vault. Если не задать, выжимки идут в ~/tldr.",
+      "default": "~/tldr",
+      "required": false
+    }
+  }
 }

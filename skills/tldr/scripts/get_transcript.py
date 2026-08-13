@@ -116,7 +116,7 @@ def fetch_with_ytdlp(video_id):
     if not shutil.which('yt-dlp'):
         return None
 
-    tmpdir = tempfile.mkdtemp(prefix='yt-tldr-')
+    tmpdir = tempfile.mkdtemp(prefix='tldr-')
     try:
         url = f'https://www.youtube.com/watch?v={video_id}'
         cmd = [

@@ -1,78 +1,88 @@
-# YouTube TLDR — Claude Code Plugin
+# tldr — Claude Code Plugin
 
-Плагин для Claude Code, который извлекает субтитры YouTube-видео и формирует практические выводы.
+Плагин для Claude Code: делает практическую выжимку из YouTube-видео (по субтитрам) и из локальных текстовых файлов.
 
 ## Что делает
 
-- Скачивает субтитры (автогенерированные или ручные)
-- Анализирует содержание и извлекает практическую пользу
-- Выводит структурированную выжимку: Суть, Ключевые идеи, Что делать, Ограничения
-- Сохраняет результат в `.md` файл
+- **YouTube** — скачивает субтитры (автогенерированные или ручные) по ссылке на видео, Shorts или трансляцию.
+- **Локальные файлы** — читает `.md`, `.txt`, `.html`, `.pdf`, `.org`, `.rtf`, `.csv`, `.json`, `.xml`.
+- Анализирует содержание и извлекает применимую пользу, а не пересказ.
+- Выводит структуру: **Суть → Ключевые идеи → Что делать → Ограничения**.
+- Сохраняет результат отдельной `.md`-заметкой с осмысленным именем и тегами.
 
-## Зависимости
+## Prerequisites
 
-- **Python 3.8+** — обязательно
-- **youtube-transcript-api** — устанавливается автоматически при первом запуске
-- **yt-dlp** — опционально, используется как fallback
+- **Python 3.8+** — обязательно.
+- **youtube-transcript-api** — ставится автоматически в изолированный venv плагина при первом старте сессии.
+- **yt-dlp** — опционально, fallback при блокировках YouTube (`brew install yt-dlp`).
 
 ## Установка
 
-### Разработка (локально)
-
-```bash
-claude --plugin-dir "/path/to/YouTube TLDR"
+```
+/plugin marketplace add https://github.com/beCyborg/youtube-tldr-plugin.git
+/plugin install tldr@youtube-tldr-plugin
 ```
 
-### Production (через маркетплейс)
+Полный HTTPS-URL — защита от клона по SSH: shorthand `owner/repo` уходит на SSH, а SSH-ключа на GitHub у нового пользователя обычно нет. `youtube-tldr-plugin` — имя маркетплейса, который добавляет первая команда; во второй подставляется именно оно.
 
-1. Добавь маркетплейс в настройки Claude Code
-2. Установи плагин:
+### Куда сохраняются выжимки
+
+По умолчанию — в `~/tldr`. Чтобы задать свою папку (например, внутри Obsidian-vault):
+
 ```bash
-claude plugin install yt-tldr@youtube-tldr-plugin
+claude plugin install tldr@youtube-tldr-plugin --config TLDR_SAVE_DIR=<путь>
 ```
 
-### Приватный репозиторий
-
-Для автообновлений приватного маркетплейса нужен токен:
-```bash
-export GITHUB_TOKEN="ghp_..."
-# или
-export GH_TOKEN="ghp_..."
-```
+Настройка `TLDR_SAVE_DIR` доступна и через `/plugin` → tldr → настройки. Без неё плагин работает из коробки, просто пишет в `~/tldr`.
 
 ## Использование
 
 ```
-/yt-tldr https://www.youtube.com/watch?v=VIDEO_ID
+/tldr https://www.youtube.com/watch?v=VIDEO_ID
 ```
 
-С указанием языка вывода:
+С языком вывода (`ru` по умолчанию, `en` — второй аргумент):
+
 ```
-/yt-tldr https://youtu.be/VIDEO_ID en
+/tldr https://youtu.be/VIDEO_ID en
 ```
 
-Поддерживаемые URL:
-- `youtube.com/watch?v=...`
-- `youtu.be/...`
-- `youtube.com/shorts/...`
-- `youtube.com/live/...`
+Локальный файл:
+
+```
+/tldr ~/Downloads/статья.pdf
+```
+
+Поддерживаемые URL: `youtube.com/watch?v=…`, `youtu.be/…`, `youtube.com/shorts/…`, `youtube.com/live/…`.
+
+## Обновления
+
+`version` в манифестах не задан — версией служит commit SHA. Каждый пуш доезжает по команде:
+
+```
+/plugin update tldr@youtube-tldr-plugin
+```
+
+Авто-обновление сторонних маркетплейсов по умолчанию выключено — включить можно в `/plugin` → Marketplaces → youtube-tldr-plugin.
 
 ## Troubleshooting
 
-### "YouTube заблокировал запрос"
+### «Для этого видео нет субтитров»
 
-YouTube может блокировать IP. Решения:
-- Подождать и попробовать позже
-- Использовать VPN
-- Установить `yt-dlp` как fallback: `brew install yt-dlp`
+Не у всех видео есть CC. Проверьте, включены ли субтитры на самом видео.
 
-### "Субтитры не найдены"
+### «YouTube заблокировал запрос»
 
-Не все видео имеют субтитры. Проверь, включены ли CC на самом видео.
+YouTube иногда блокирует IP. Варианты: подождать и повторить, включить VPN, установить `yt-dlp` как fallback (`brew install yt-dlp`).
 
-### "Не установлен youtube-transcript-api"
+### «Не установлен youtube-transcript-api»
 
-Перезапусти Claude Code — плагин автоматически установит зависимость. Или вручную:
+Перезапустите Claude Code — SessionStart-хук развернёт venv и поставит зависимость сам. Вручную:
+
 ```bash
 pip install youtube-transcript-api
 ```
+
+## Лицензия
+
+MIT — см. [LICENSE](LICENSE).
