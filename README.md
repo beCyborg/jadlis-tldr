@@ -62,7 +62,7 @@ claude plugin install tldr@youtube-tldr-plugin --config TLDR_SAVE_DIR=<путь>
 
 ## Обновления
 
-`version` в манифестах не задан — версией служит commit SHA. Каждый пуш доезжает по команде:
+Версия плагина задана в `plugin.json` (semver) — обновление доезжает по команде:
 
 ```
 /plugin update tldr@youtube-tldr-plugin
