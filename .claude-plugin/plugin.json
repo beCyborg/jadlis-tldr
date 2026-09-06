@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "tldr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "tldr — выжимка из YouTube-видео и текстовых файлов",
   "description": "Извлекает субтитры YouTube-видео или читает текстовый файл и формирует практическую выжимку: суть, ключевые идеи, что делать, ограничения. Результат сохраняется отдельной markdown-заметкой.",
   "author": {
