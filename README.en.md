@@ -108,4 +108,4 @@ Or enable auto-update once: `/plugin` → **Marketplaces** → `jadlis`. If you 
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+No license: the code is open to read and to use personally; all rights reserved. Commercial use, redistribution and inclusion in other products — by separate agreement only.

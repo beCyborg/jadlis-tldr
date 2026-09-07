@@ -9,8 +9,14 @@
   },
   "homepage": "https://github.com/beCyborg/jadlis-tldr",
   "repository": "https://github.com/beCyborg/jadlis-tldr",
-  "license": "MIT",
-  "keywords": ["youtube", "subtitles", "tldr", "summarize", "transcript", "video-analysis"],
+  "keywords": [
+    "youtube",
+    "subtitles",
+    "tldr",
+    "summarize",
+    "transcript",
+    "video-analysis"
+  ],
   "userConfig": {
     "TLDR_SAVE_DIR": {
       "type": "directory",
