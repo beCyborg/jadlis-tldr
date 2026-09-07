@@ -12,7 +12,7 @@
 - Changed: `.claude-plugin/marketplace.json` — `homepage` записи → новый адрес; имя маркетплейса `youtube-tldr-plugin` оставлено без изменений.
 - Changed: `README.md`, `README.en.md` — установка через хаб `https://github.com/beCyborg/jadlis-start.git`; блок альтернативной установки из своего маркетплейса заменён строкой о том, что старые установки продолжают работать.
 - Changed: `CLAUDE.md` — заголовок и адрес хаба.
-- Changed: `.github/workflows/plugin-validate.yml` — вызов переиспользуемого workflow `beCyborg/jadlis-start/.github/workflows/plugin-ci.yml@main`.
+- Changed: `.github/workflows/plugin-validate.yml` — вызов переиспользуемого workflow `beCyborg/jadlis-start/.github/workflows/plugin-ci.yml@main` (`mode: plugin` — репо root-as-plugin).
 - Migration: не требуется, скилл, хук и скрипт субтитров не менялись.
 
 ## [1.0.1] — 2026-09-06 — двуязычный README и гейты передачи / bilingual README and handover gates

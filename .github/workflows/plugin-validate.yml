@@ -9,6 +9,6 @@ jobs:
   ci:
     uses: beCyborg/jadlis-start/.github/workflows/plugin-ci.yml@main
     with:
-      mode: marketplace
+      mode: plugin
       forbid-mermaid: false
     secrets: inherit

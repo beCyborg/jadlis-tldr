@@ -67,6 +67,7 @@ claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 ```
 
 The repository's legacy marketplace (`youtube-tldr-plugin`) stays in place for installs already made — they keep working after the repository rename.
+
 The full HTTPS URL guards against an SSH clone: the `owner/repo` shorthand goes over SSH, and a new user usually has no SSH key on GitHub.
 
 **Where notes are saved.** `TLDR_SAVE_DIR` is an ordinary folder and may point inside an Obsidian vault; without it digests go to `~/tldr`. Set it later via `/plugin` → tldr → settings.
