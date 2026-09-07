@@ -54,7 +54,7 @@ tags: [tldr, продуктивность]
 
 ```
 Ты — установщик. Выполни ровно эти шаги и ничего сверх них:
-1. Bash: claude plugin marketplace add https://github.com/beCyborg/jadlis-plugins.git
+1. Bash: claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
 2. Bash: claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 3. Скажи мне одной строкой: «Перезапусти Claude Code — хук развернёт venv с зависимостью».
 ```
@@ -62,17 +62,11 @@ tags: [tldr, продуктивность]
 Те же две команды руками, если Bash в приложении недоступен:
 
 ```bash
-claude plugin marketplace add https://github.com/beCyborg/jadlis-plugins.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
 claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 ```
 
-Ставится плагин и из отдельного маркетплейса репозитория — `youtube-tldr-plugin`:
-
-```bash
-claude plugin marketplace add https://github.com/beCyborg/youtube-tldr-plugin.git
-claude plugin install tldr@youtube-tldr-plugin
-```
-
+Старый маркетплейс репозитория (`youtube-tldr-plugin`) остаётся для уже сделанных установок — после переименования репозитория они продолжают работать.
 Полный HTTPS-URL — защита от клона по SSH: shorthand `owner/repo` уходит на SSH, а SSH-ключа на GitHub у нового пользователя обычно нет.
 
 **Куда сохранять.** `TLDR_SAVE_DIR` — обычная папка, можно указать путь внутри Obsidian-vault; без настройки выжимки идут в `~/tldr`. Задать позже — `/plugin` → tldr → настройки.

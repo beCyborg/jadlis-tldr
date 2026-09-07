@@ -14,7 +14,7 @@
       "tags": ["youtube", "summarize", "transcript", "notes", "productivity"],
       "description": "Скачивает субтитры YouTube-видео или читает локальный текстовый файл и делает аналитическую выжимку с практическими выводами; результат сохраняется markdown-заметкой в настраиваемую папку.",
       "author": { "name": "beCyborg" },
-      "homepage": "https://github.com/beCyborg/youtube-tldr-plugin"
+      "homepage": "https://github.com/beCyborg/jadlis-tldr"
     }
   ],
   "renames": {}

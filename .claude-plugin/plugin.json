@@ -1,14 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "tldr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "tldr — выжимка из YouTube-видео и текстовых файлов",
   "description": "Извлекает субтитры YouTube-видео или читает текстовый файл и формирует практическую выжимку: суть, ключевые идеи, что делать, ограничения. Результат сохраняется отдельной markdown-заметкой.",
   "author": {
     "name": "beCyborg"
   },
-  "homepage": "https://github.com/beCyborg/youtube-tldr-plugin",
-  "repository": "https://github.com/beCyborg/youtube-tldr-plugin",
+  "homepage": "https://github.com/beCyborg/jadlis-tldr",
+  "repository": "https://github.com/beCyborg/jadlis-tldr",
   "license": "MIT",
   "keywords": ["youtube", "subtitles", "tldr", "summarize", "transcript", "video-analysis"],
   "userConfig": {

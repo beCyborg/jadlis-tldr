@@ -2,6 +2,19 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [1.0.2] — 2026-09-07 — переименование репозитория / repository rename
+
+### Для человека
+- Репо переименовано в `jadlis-tldr`, маркетплейс `jadlis` (`tldr@jadlis`); старый адрес редиректит, старая установка продолжает работать.
+
+### For agents
+- Changed: `.claude-plugin/plugin.json` — `version` 1.0.1 → 1.0.2, `homepage`/`repository` → `https://github.com/beCyborg/jadlis-tldr`.
+- Changed: `.claude-plugin/marketplace.json` — `homepage` записи → новый адрес; имя маркетплейса `youtube-tldr-plugin` оставлено без изменений.
+- Changed: `README.md`, `README.en.md` — установка через хаб `https://github.com/beCyborg/jadlis-start.git`; блок альтернативной установки из своего маркетплейса заменён строкой о том, что старые установки продолжают работать.
+- Changed: `CLAUDE.md` — заголовок и адрес хаба.
+- Changed: `.github/workflows/plugin-validate.yml` — вызов переиспользуемого workflow `beCyborg/jadlis-start/.github/workflows/plugin-ci.yml@main`.
+- Migration: не требуется, скилл, хук и скрипт субтитров не менялись.
+
 ## [1.0.1] — 2026-09-06 — двуязычный README и гейты передачи / bilingual README and handover gates
 
 ### Для человека

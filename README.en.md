@@ -54,7 +54,7 @@ Open Claude Code and paste this block into the input line:
 
 ```
 You are an installer. Do exactly these steps and nothing beyond them:
-1. Bash: claude plugin marketplace add https://github.com/beCyborg/jadlis-plugins.git
+1. Bash: claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
 2. Bash: claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 3. Tell me in one line: "Restart Claude Code — the hook will build the venv with the dependency".
 ```
@@ -62,17 +62,11 @@ You are an installer. Do exactly these steps and nothing beyond them:
 The same two commands by hand, if Bash is unavailable in the app:
 
 ```bash
-claude plugin marketplace add https://github.com/beCyborg/jadlis-plugins.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
 claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 ```
 
-The plugin also installs from this repository's own marketplace, `youtube-tldr-plugin`:
-
-```bash
-claude plugin marketplace add https://github.com/beCyborg/youtube-tldr-plugin.git
-claude plugin install tldr@youtube-tldr-plugin
-```
-
+The repository's legacy marketplace (`youtube-tldr-plugin`) stays in place for installs already made — they keep working after the repository rename.
 The full HTTPS URL guards against an SSH clone: the `owner/repo` shorthand goes over SSH, and a new user usually has no SSH key on GitHub.
 
 **Where notes are saved.** `TLDR_SAVE_DIR` is an ordinary folder and may point inside an Obsidian vault; without it digests go to `~/tldr`. Set it later via `/plugin` → tldr → settings.
