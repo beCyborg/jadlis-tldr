@@ -1,111 +1,146 @@
-[Русский](README.md) · English
+English · [Русский](README.md)
 
-# tldr — a takeaway digest of videos and text files
+# You watched it or read it, and a week later not a line of it is left — with nowhere to go back to
 
-A Claude Code plugin: it pulls the subtitles of a YouTube video or reads a local file and returns what is actually usable — the gist, the key ideas, what to do, the limits.
-
-## Why
-
-An hour-long video and a forty-screen article cost the same: an hour of attention, of which three paragraphs will matter — and you cannot tell which ones in advance.
-
-The plugin takes the subtitles (manual or auto-generated) or reads the whole file and extracts the usable part: not a retelling in order, but what you can act on and where the author hedged.
-
-The result is saved as a separate markdown note with a meaningful name and tags — into your own folder or straight into an Obsidian vault.
-
-## What it looks like
-
-![A funnel: many cubes on top, one at the bottom](docs/img/10-overview.v2-06.webp)
-
-<details>
-<summary>Synthetic example of a note</summary>
-
-```markdown
----
-tags: [tldr, productivity]
----
-
-# How a sprint works in a small team
-
-## The gist
-The author runs three-day sprints instead of two-week ones: one goal,
-the result is demoed at the end of day three, planning takes twenty
-minutes.
-
-## Key ideas
-- A short horizon ends the haggling over priorities: three days fit one task.
-- The demo is mandatory even with no audience — it sets the definition of done.
-- An unfinished task is not carried over but reformulated for a new sprint.
-
-## What to do
-1. Take one task of the week and cut it to a three-day scope.
-2. Schedule the demo before the work starts.
-3. At the end, write one line about what got in the way.
-
-## Limits
-The experience of a single four-person team with no external clients; the
-author says nothing about working to client deadlines.
-```
-
-</details>
-
-## Install
-
-Open Claude Code and paste this block into the input line:
+The captions of a video or the text of a file go through one and the same frame — the gist, the key
+ideas, what to do, the limits — and land as a separate note in your folder, not in a chat thread.
 
 ```
-You are an installer. Do exactly these steps and nothing beyond them:
-1. Bash: claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-2. Bash: claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
-3. Tell me in one line: "Restart Claude Code — the hook will build the venv with the dependency".
-```
-
-The same two commands by hand, if Bash is unavailable in the app:
-
-```bash
 claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
+claude plugin install tldr@jadlis
 ```
 
-The repository's legacy marketplace (`youtube-tldr-plugin`) stays in place for installs already made — they keep working after the repository rename.
+No keys and no subscriptions: captions are pulled by a public route, and the plugin installs its own
+dependency.
 
-The full HTTPS URL guards against an SSH clone: the `owner/repo` shorthand goes over SSH, and a new user usually has no SSH key on GitHub.
+![A video link and a file converge into one analysis frame, and a markdown note comes out of it](docs/img/hero-jadlis-tldr.webp)
 
-**Where notes are saved.** `TLDR_SAVE_DIR` is an ordinary folder and may point inside an Obsidian vault; without it digests go to `~/tldr`. Set it later via `/plugin` → tldr → settings.
+In words: on the left two inputs — a YouTube link and a file path — in the middle the shared analysis
+frame, on the right the finished note in the folder you named at install time.
 
-**The dependency.** `youtube-transcript-api` installs itself into the plugin's isolated venv through the `SessionStart` hook on the first session start. You need `python3` 3.8+; `yt-dlp` (`brew install yt-dlp`) is an optional fallback for YouTube blocks.
+This is my workbench published as it is, not a product: whatever I stopped using, I removed.
 
-## Usage
+## Before → after
 
-The skill command with a link or a path:
+| By hand | With an AI chat | With this plugin |
+|---|---|---|
+| **How the text of a video is obtained.** You scrub and listen yourself, taking notes as you go. | Not every chat accepts the link, and the one that does often retells the title and the description. | A script pulls the captions by a public route; manual ones come before auto-generated, lines are merged into paragraphs by pauses, `[Music]` and `[Applause]` are stripped out. |
+| **What comes out at the end.** The notes follow the order of the material: the intro first, then everything in a row. | A short retelling arrives, and no single action follows from it. | The analysis runs on a fixed frame: the gist, the key ideas, what to do, the limits; every takeaway is written as an action plus the reason it works. |
+| **Where the analysis settles.** The notes live in a notebook or never get written — there is nowhere to search later. | The analysis stays in the thread and leaves with it. | The note is written as a separate markdown file into the `TLDR_SAVE_DIR` folder — you can point it inside an Obsidian vault. |
+| **How you find the note later.** The file is named whatever it named itself: "video", "lecture", "review". | There is nothing to find — no file was saved. | The file name is built from the main topic of the material, tags go into the frontmatter, the source link and metadata into the body; if a name collides, a suffixed note is placed alongside. |
+| **When there is nothing to analyse.** You realise it halfway through watching. | It answers from the title of the clip as if it had watched it. | No captions — it says so plainly and stops; the request blocked by IP — it shows what exactly happened and offers a retry or a VPN. |
+
+## How it works
+
+![A link or a file goes in, captions are pulled or the file is read, one shared analysis frame, a note comes out](docs/img/how-jadlis-tldr.webp)
+
+Going in — a YouTube link or a file path, with the note language as an optional second word.
+Inside — a separate script pulls the captions, a file is read whole, and both paths then converge
+into one analysis frame.
+Coming out — the note in your folder and its absolute path in the reply.
+
+In words: link or file → captions or file read → analysis by the frame "gist, key ideas, what to do,
+limits" → a tagged markdown note in `TLDR_SAVE_DIR`.
+
+Installing the dependency is the plugin's own job: a `SessionStart` hook unrolls an isolated venv in
+its data folder and diffs `requirements.txt` against a cached copy — if they match, the hook exits
+silently, so the install happens once rather than every session. One package lives in that venv,
+`youtube-transcript-api`. `yt-dlp` is not put there: it is an external binary, and the fallback onto
+it switches on only if it is already present on the system.
+
+Fitting the analysis to the size comes next: a short text is reduced to the gist and the list of
+actions, and on a long video the skill warns up front that nuances may be lost. From YouTube it
+understands four link shapes — `watch?v=`, `youtu.be`, `shorts`, `live` — and drops the playlist
+tail. Files are taken by extension: `.md`, `.txt`, `.html`, `.pdf`, `.org`, `.rtf`, `.csv`, `.json`,
+`.xml`.
+
+## Installing and the first run
+
+**a) Text to paste to an agent.** Copy the whole thing into a Claude Code chat:
+
+```
+You are the installer. Install the plugin tldr from the jadlis marketplace on this Mac.
+This plugin needs no keys, so ask me for nothing secret.
+First ask me which folder the summaries should go into and put it in place of ~/tldr in the
+second command — it may point inside an Obsidian vault.
+Then run exactly these commands, verbatim, shortening nothing:
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
+2. claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
+3. claude plugin list — show me the line about tldr and its version.
+After that tell me in one line: restart Claude Code — the dependency is unrolled by a hook
+when the session starts.
+Before each command show it to me in full and wait for "yes". If I say "no", do not run it,
+tell me what you skipped, and move on.
+If a command returns an error, stop, show me the output, and do not move to the next one.
+```
+
+**b) Commands by hand.**
+
+```
+claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
+claude plugin install tldr@jadlis
+claude plugin list
+```
+
+The first command installs nothing — it adds the marketplace. Only the second one installs, and one
+line removes it: `claude plugin uninstall tldr@jadlis --keep-data`.
+
+The notes folder is set by `TLDR_SAVE_DIR`, and it is passed straight into the install — `claude
+plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/Notes/tldr`. Leave it unset and the notes go to
+`~/tldr`. Changing the folder later goes through `/plugin` → tldr → settings: on an already
+installed plugin the `--config` flag silently changes nothing (checked 2026-09-07), so the other
+route is a reinstall.
+
+**c) The short command.** Open Claude Code in the folder you work in and type:
 
 ```
 /tldr:tldr https://www.youtube.com/watch?v=VIDEO_ID
-/tldr:tldr https://youtu.be/VIDEO_ID en
-/tldr:tldr ~/Downloads/article.pdf
+/tldr:tldr ~/Downloads/article.pdf en
 ```
 
-- **Video.** Supported: `youtube.com/watch?v=…`, `youtu.be/…`, `youtube.com/shorts/…`, `youtube.com/live/…`. The second argument is the output language: `ru` by default, `en` as the other value.
-- **Files.** `.md`, `.txt`, `.html`, `.pdf`, `.org`, `.rtf`, `.csv`, `.json`, `.xml` are read as text.
-- **Result.** A tagged `.md` note in `TLDR_SAVE_DIR`, structured as "gist → key ideas → what to do → limits".
+If it is not found, check the name with `claude plugin list`. The second argument is the note
+language: without it Russian, `en` gives English. Make the first run after restarting Claude Code —
+the hook installs the dependency when a session starts.
 
-## Limits and cost
+## Limits, cost, updating
 
-- **Nothing to pay.** The plugin is free and needs no API keys; the only spend is session tokens for analysing the text.
-- **Videos need subtitles** (manual or automatic): the plugin works with the CC text, it does not listen to audio. No subtitles, no digest.
-- **Files are read as text.** From a PDF it takes the text layer; scans and images are not recognised.
-- **YouTube sometimes blocks the request** by IP: wait and retry, turn on a VPN, or install `yt-dlp` as a fallback.
-- **"youtube-transcript-api is not installed"** — restart Claude Code and the hook builds the venv itself; manually: `pip install youtube-transcript-api`.
+**What it does not do.** It does not listen to audio and does not transcribe speech: no captions
+means nothing to analyse, and the skill says so and stops. It does not download the video and does
+not hand back a verbatim transcript — only the analysis comes out. It does not go to other video
+platforms: it understands YouTube links and nothing else. It does not read scans — from a PDF it
+takes the text layer. It does not check the author: what the material says is what lands in the
+note, and only the weak spots of the reasoning are flagged separately. It does not edit a note it
+already saved — on a name collision it puts a new one alongside.
 
-## Update
+**What you need.** No keys are needed and no third-party subscriptions either: captions are pulled
+by a public route. You need `python3` on the system — the hook uses it to unroll the venv and put
+`youtube-transcript-api` in there. `yt-dlp` is optional, it is not in `requirements.txt` and the
+plugin does not install it: install it yourself and you get a spare route for when YouTube blocks
+the request by IP. The notes folder is `TLDR_SAVE_DIR`, and without it `~/tldr`.
 
-For third-party marketplaces auto-update is off by default on the recipient's side — a new version arrives on command:
+[уточнить] — the repository pins no minimum version of `python3`.
 
-```bash
+**How tokens get spent.** A run is light: there are no subagents and no fan-outs here, and in one
+pass the text goes through the model once. Long material costs more than the rest — the captions go
+into context whole, and on a long recording the skill warns about it itself.
+
+**Verified where I work:** my Mac, my subscription. Where else this works — [уточнить].
+
+**Terms of use.** There is no license: all rights reserved by the author. You may read it and use it
+personally. Commercial use, republishing and bundling it into your own products — by arrangement
+with me.
+
+**Updating.** With a third-party marketplace, auto-update is off on your side: until you run the
+first command you keep the version you installed.
+
+```
+claude plugin marketplace update jadlis
 claude plugin update tldr@jadlis
+claude plugin list
 ```
 
-Or enable auto-update once: `/plugin` → **Marketplaces** → `jadlis`. If you installed from `youtube-tldr-plugin`, use that name instead of `jadlis`. The version is explicit semver in `plugin.json`; history in [CHANGELOG.md](CHANGELOG.md).
+Reinstall, if something ended up crooked:
 
-## License
-
-No license: the code is open to read and to use personally; all rights reserved. Commercial use, redistribution and inclusion in other products — by separate agreement only.
+```
+claude plugin uninstall tldr@jadlis --keep-data && claude plugin install tldr@jadlis
+```
