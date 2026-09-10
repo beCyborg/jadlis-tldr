@@ -1,6 +1,22 @@
-# Changelog — tldr
+# Changelog — jadlis-tldr
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
+
+## [2.0.0] — 2026-09-10 — переименование плагина в `jadlis-tldr` / plugin renamed to `jadlis-tldr`
+
+### Для человека
+- Плагин переименован `tldr` → `jadlis-tldr`: ставится теперь как `claude plugin install jadlis-tldr@jadlis`, полная форма команды — `/jadlis-tldr:tldr`.
+- Короткая команда `/tldr` не изменилась — её задаёт фронтматтер `name` скилла, а не имя плагина.
+- Совместимости со старым именем нет: установленный `tldr@jadlis` нужно снести и поставить заново.
+
+### For agents
+- Changed: `.claude-plugin/plugin.json` — `name` `tldr` → `jadlis-tldr`, `version` 1.0.2 → 2.0.0.
+- Changed: `.claude-plugin/marketplace.json` — `plugins[0].name` → `jadlis-tldr`; имя маркетплейса `youtube-tldr-plugin` оставлено без изменений.
+- Changed: `README.md`, `README.en.md` — установка `jadlis-tldr@jadlis`, маркетплейс-хаб `https://github.com/beCyborg/jadlis-hub`, полная форма команды `/jadlis-tldr:tldr`, упоминания плагина в тексте установщика и в `/plugin` → настройки.
+- Changed: `CLAUDE.md` — имя плагина, тег `jadlis-tldr--v{X.Y.Z}`, рабочий клон `~/jadlis-tldr`, пути инструментов `~/jadlis-hub/tools/`, снято правило о неизменяемости имени.
+- Changed: `.github/workflows/plugin-validate.yml` — вызов `beCyborg/jadlis-hub/.github/workflows/plugin-ci.yml@main`.
+- Breaking: имя плагина и полная форма команды изменились; шимов и алиасов нет.
+- Migration: `claude plugin uninstall tldr@jadlis --keep-data && claude plugin install jadlis-tldr@jadlis`; `userConfig.TLDR_SAVE_DIR` не менялся, скилл, хук и скрипт субтитров не трогали.
 
 ## [1.0.2] — 2026-09-07 — переименование репозитория / repository rename
 

@@ -6,8 +6,8 @@ The captions of a video or the text of a file go through one and the same frame 
 ideas, what to do, the limits — and land as a separate note in your folder, not in a chat thread.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-claude plugin install tldr@jadlis
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin install jadlis-tldr@jadlis
 ```
 
 No keys and no subscriptions: captions are pulled by a public route, and the plugin installs its own
@@ -59,14 +59,14 @@ tail. Files are taken by extension: `.md`, `.txt`, `.html`, `.pdf`, `.org`, `.rt
 **a) Text to paste to an agent.** Copy the whole thing into a Claude Code chat:
 
 ```
-You are the installer. Install the plugin tldr from the jadlis marketplace on this Mac.
+You are the installer. Install the plugin jadlis-tldr from the jadlis marketplace on this Mac.
 This plugin needs no keys, so ask me for nothing secret.
 First ask me which folder the summaries should go into and put it in place of ~/tldr in the
 second command — it may point inside an Obsidian vault.
 Then run exactly these commands, verbatim, shortening nothing:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-2. claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
-3. claude plugin list — show me the line about tldr and its version.
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+2. claude plugin install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
+3. claude plugin list — show me the line about jadlis-tldr and its version.
 After that tell me in one line: restart Claude Code — the dependency is unrolled by a hook
 when the session starts.
 Before each command show it to me in full and wait for "yes". If I say "no", do not run it,
@@ -77,25 +77,25 @@ If a command returns an error, stop, show me the output, and do not move to the 
 **b) Commands by hand.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-claude plugin install tldr@jadlis
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin install jadlis-tldr@jadlis
 claude plugin list
 ```
 
 The first command installs nothing — it adds the marketplace. Only the second one installs, and one
-line removes it: `claude plugin uninstall tldr@jadlis --keep-data`.
+line removes it: `claude plugin uninstall jadlis-tldr@jadlis --keep-data`.
 
 The notes folder is set by `TLDR_SAVE_DIR`, and it is passed straight into the install — `claude
-plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/Notes/tldr`. Leave it unset and the notes go to
-`~/tldr`. Changing the folder later goes through `/plugin` → tldr → settings: on an already
+plugin install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/Notes/tldr`. Leave it unset and the notes go to
+`~/tldr`. Changing the folder later goes through `/plugin` → jadlis-tldr → settings: on an already
 installed plugin the `--config` flag silently changes nothing (checked 2026-09-07), so the other
 route is a reinstall.
 
 **c) The short command.** Open Claude Code in the folder you work in and type:
 
 ```
-/tldr:tldr https://www.youtube.com/watch?v=VIDEO_ID
-/tldr:tldr ~/Downloads/article.pdf en
+/jadlis-tldr:tldr https://www.youtube.com/watch?v=VIDEO_ID
+/jadlis-tldr:tldr ~/Downloads/article.pdf en
 ```
 
 If it is not found, check the name with `claude plugin list`. The second argument is the note
@@ -135,12 +135,12 @@ first command you keep the version you installed.
 
 ```
 claude plugin marketplace update jadlis
-claude plugin update tldr@jadlis
+claude plugin update jadlis-tldr@jadlis
 claude plugin list
 ```
 
 Reinstall, if something ended up crooked:
 
 ```
-claude plugin uninstall tldr@jadlis --keep-data && claude plugin install tldr@jadlis
+claude plugin uninstall jadlis-tldr@jadlis --keep-data && claude plugin install jadlis-tldr@jadlis
 ```

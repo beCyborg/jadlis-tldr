@@ -8,7 +8,7 @@
   "description": "tldr для Claude Code: выжимка из YouTube-видео (по субтитрам) и из локальных текстовых файлов — суть, ключевые идеи, что делать, ограничения.",
   "plugins": [
     {
-      "name": "tldr",
+      "name": "jadlis-tldr",
       "source": "./",
       "category": "productivity",
       "tags": ["youtube", "summarize", "transcript", "notes", "productivity"],

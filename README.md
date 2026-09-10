@@ -6,8 +6,8 @@
 что делать, ограничения — и ложатся отдельной заметкой в твою папку, а не остаются в переписке.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-claude plugin install tldr@jadlis
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin install jadlis-tldr@jadlis
 ```
 
 Ключей и подписок не нужно: субтитры берутся публичным путём, зависимость плагин ставит себе сам.
@@ -57,14 +57,14 @@ claude plugin install tldr@jadlis
 **а) Текст для вставки агенту.** Скопируй целиком в чат Claude Code:
 
 ```
-Ты — установщик. Поставь на этот Mac плагин tldr из маркетплейса jadlis.
+Ты — установщик. Поставь на этот Mac плагин jadlis-tldr из маркетплейса jadlis.
 Ключи этому плагину не нужны, ничего секретного спрашивать не надо.
 Сначала спроси меня, в какую папку складывать выжимки, и подставь её вместо ~/tldr
 во второй команде — можно указать путь внутрь Obsidian-хранилища.
 Выполни ровно эти команды, дословно, ничего не сокращая:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-2. claude plugin install tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
-3. claude plugin list — покажи мне строку про tldr и его версию.
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+2. claude plugin install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
+3. claude plugin list — покажи мне строку про jadlis-tldr и его версию.
 Потом скажи мне одной строкой: перезапусти Claude Code — зависимость разворачивается
 хуком при старте сессии.
 Перед каждой командой покажи её мне целиком и дождись «да». Сказал «нет» — не выполняй,
@@ -75,24 +75,24 @@ claude plugin install tldr@jadlis
 **б) Команды руками.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-start.git
-claude plugin install tldr@jadlis
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin install jadlis-tldr@jadlis
 claude plugin list
 ```
 
 Первая команда ничего не ставит — она добавляет маркетплейс. Ставит только вторая, и снимается
-она одной строкой: `claude plugin uninstall tldr@jadlis --keep-data`.
+она одной строкой: `claude plugin uninstall jadlis-tldr@jadlis --keep-data`.
 
 Папку для заметок задаёт `TLDR_SAVE_DIR`, и передаётся она прямо в установку — `claude plugin
-install tldr@jadlis --config TLDR_SAVE_DIR=~/Заметки/tldr`. Не задал — заметки идут в `~/tldr`.
-Поменять папку позже можно через `/plugin` → tldr → настройки: на уже установленном плагине флаг
+install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/Заметки/tldr`. Не задал — заметки идут в `~/tldr`.
+Поменять папку позже можно через `/plugin` → jadlis-tldr → настройки: на уже установленном плагине флаг
 `--config` молча ничего не меняет (проверено 07.09.2026), так что второй путь — переустановка.
 
 **в) Короткая команда.** Открой Claude Code в папке, где работаешь, и набери:
 
 ```
-/tldr:tldr https://www.youtube.com/watch?v=VIDEO_ID
-/tldr:tldr ~/Downloads/статья.pdf en
+/jadlis-tldr:tldr https://www.youtube.com/watch?v=VIDEO_ID
+/jadlis-tldr:tldr ~/Downloads/статья.pdf en
 ```
 
 Не находится — сверь имя строкой `claude plugin list`. Второй аргумент — язык заметки: без него
@@ -131,12 +131,12 @@ install tldr@jadlis --config TLDR_SAVE_DIR=~/Заметки/tldr`. Не зада
 
 ```
 claude plugin marketplace update jadlis
-claude plugin update tldr@jadlis
+claude plugin update jadlis-tldr@jadlis
 claude plugin list
 ```
 
 Переустановка, если что-то встало криво:
 
 ```
-claude plugin uninstall tldr@jadlis --keep-data && claude plugin install tldr@jadlis
+claude plugin uninstall jadlis-tldr@jadlis --keep-data && claude plugin install jadlis-tldr@jadlis
 ```
