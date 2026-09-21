@@ -2,6 +2,16 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [2.0.1] — 2026-09-21
+
+### Для человека
+
+- Конспект сразу получает короткий английский адрес для Obsidian Publish: в свойствах появляется `permalink` с суффиксом `-tldr`, и ссылка на опубликованную заметку больше не состоит из длинной закодированной кириллицы.
+
+### For agents
+
+- Changed: `skills/tldr/SKILL.md` §4.3 — canonical frontmatter gains `permalink: <slug>` (2–4 English words + `-tldr`, ASCII, unique in the vault).
+
 ## [2.0.0] — 2026-09-10 — переименование плагина в `jadlis-tldr` / plugin renamed to `jadlis-tldr`
 
 ### Для человека
