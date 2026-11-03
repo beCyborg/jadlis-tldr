@@ -2,6 +2,23 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [2.0.2] — 2026-11-03 — репозиторий переехал на GitLab / repository moved to GitLab
+
+### Для человека
+
+- Плагин теперь живёт на GitLab: https://gitlab.com/beCyborg/jadlis-tldr. Аккаунт GitHub beCyborg заблокирован, поэтому старые ссылки открывают 404.
+- Каталог ставится новой командой: `claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git`, затем `claude plugin install jadlis-tldr@jadlis`. Если ты ставил каталог со старой ссылки GitHub, удали его командой `claude plugin marketplace remove jadlis` и поставь заново по README.
+- Работа плагина не изменилась.
+
+### For agents
+
+- Changed: `README.md`, `README.en.md` — `marketplace add` uses `https://gitlab.com/beCyborg/jadlis-hub.git`; `README.en.md` language switch line aligned with the house standard (`[Русский](README.md) · English`).
+- Changed: `.claude-plugin/plugin.json` — `homepage`/`repository` → `https://gitlab.com/beCyborg/jadlis-tldr`, `author` → `{"name": "Be Cyborg"}`, version 2.0.1 → 2.0.2.
+- Changed: CI moved from `.github/workflows/plugin-validate.yml` to `.gitlab-ci.yml` including `/ci/plugin-ci.yml` from `beCyborg/jadlis-hub` (validate `--strict`, gitleaks, README parity, privacy grep).
+- Changed: root `CLAUDE.md` → `.claude/CLAUDE.md` (a root `CLAUDE.md` fails `claude plugin validate --strict`); text updated for GitLab and the removed marketplace.
+- Removed: `.claude-plugin/marketplace.json` (own marketplace `youtube-tldr-plugin`); the plugin ships only through the `jadlis` hub.
+- Added: `.gitignore`.
+
 ## [2.0.1] — 2026-09-21
 
 ### Для человека

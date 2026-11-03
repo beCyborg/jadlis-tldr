@@ -6,7 +6,7 @@
 что делать, ограничения — и ложатся отдельной заметкой в твою папку, а не остаются в переписке.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-tldr@jadlis
 ```
 
@@ -62,7 +62,7 @@ claude plugin install jadlis-tldr@jadlis
 Сначала спроси меня, в какую папку складывать выжимки, и подставь её вместо ~/tldr
 во второй команде — можно указать путь внутрь Obsidian-хранилища.
 Выполни ровно эти команды, дословно, ничего не сокращая:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 3. claude plugin list — покажи мне строку про jadlis-tldr и его версию.
 Потом скажи мне одной строкой: перезапусти Claude Code — зависимость разворачивается
@@ -75,7 +75,7 @@ claude plugin install jadlis-tldr@jadlis
 **б) Команды руками.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-tldr@jadlis
 claude plugin list
 ```

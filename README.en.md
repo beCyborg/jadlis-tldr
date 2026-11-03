@@ -1,4 +1,4 @@
-English · [Русский](README.md)
+[Русский](README.md) · English
 
 # You watched it or read it, and a week later not a line of it is left — with nowhere to go back to
 
@@ -6,7 +6,7 @@ The captions of a video or the text of a file go through one and the same frame 
 ideas, what to do, the limits — and land as a separate note in your folder, not in a chat thread.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-tldr@jadlis
 ```
 
@@ -64,7 +64,7 @@ This plugin needs no keys, so ask me for nothing secret.
 First ask me which folder the summaries should go into and put it in place of ~/tldr in the
 second command — it may point inside an Obsidian vault.
 Then run exactly these commands, verbatim, shortening nothing:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-tldr@jadlis --config TLDR_SAVE_DIR=~/tldr
 3. claude plugin list — show me the line about jadlis-tldr and its version.
 After that tell me in one line: restart Claude Code — the dependency is unrolled by a hook
@@ -77,7 +77,7 @@ If a command returns an error, stop, show me the output, and do not move to the 
 **b) Commands by hand.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-tldr@jadlis
 claude plugin list
 ```
