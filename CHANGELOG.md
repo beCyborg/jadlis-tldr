@@ -2,6 +2,14 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [2.0.3] — 2026-11-15 — окружение Python через uv / Python env via uv
+
+### Для человека
+- Выжимки из видео и файлов теперь работают на сервере (Linux), где Python не умеет сам создавать окружение. В этом случае плагин ставит окружение через uv. Раньше окружение оставалось сломанным, и выжимка падала с ошибкой.
+
+### For agents
+- Fixed: the SessionStart install hook falls back to `uv venv` + `uv pip install` when `python3 -m venv` or pip fails (Debian without python3-venv). macOS behaviour unchanged.
+
 ## [2.0.2] — 2026-11-03 — репозиторий переехал на GitLab / repository moved to GitLab
 
 ### Для человека
